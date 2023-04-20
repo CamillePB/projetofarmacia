@@ -1,6 +1,6 @@
 package com.generation.farmacia.repository;
 
-//import java.math.BigDecimal;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,22 +15,20 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 
     List<Produto> findAllByNomeContainingIgnoreCase(@Param("nome")String Nome); 
     
-    
+   
 	 
-	/**public List  findAllByPrecoGreaterThanOrderByPreco(BigDecimal preco);
+	public List<Produto>  findByPrecoBetween(BigDecimal min, BigDecimal max);
 	
-	 *  Método Personalizado - Buscar todos os Produtos cujo o preço seja maior 
-	 *  do que um valor digitado ordenado pelo preço em ordem crescente
-	 *  
-	 *  MySQL: select * from tb_produtos where preco > preco order by preco;
+	
+	/*
+	 *  MySQL: *SELECT * FROM tb_produtos WHERE preco BETWEEN min AND max;
 	 */
 	
-	 
-	/**public ListfindAllByPrecoLessThanOrderByPrecoDesc(BigDecimal preco);
+	public List<Produto> findAllByNomeAndMarca(String nome, String marca);
 	
-		 *  Método Personalizado - Buscar todos os Produtos cujo o preço seja menor 
-		 *  do que um valor digitado ordenado pelo preço em ordem decrescente
-		 *  
-		 *  MySQL: select * from tb_produtos where preco < preco order by preco desc;
+	/**
+	 	 *  MySQL: SELECT * FROM tb_produtos WHERE nome = nome AND preco = preco;
 		 */
+	public List<Produto> findAllByNomeOrMarca(String nome, String marca);
+	
 }

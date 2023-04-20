@@ -1,6 +1,6 @@
 package com.generation.farmacia.controller;
 
-//import java.math.BigDecimal;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,19 +93,26 @@ public class ProdutoController {
 		
 	}
 		
-	/*@GetMapping("/preco_maior/{preco}")
-	public ResponseEntity<List<Produto>> getPrecoMaiorQue(@PathVariable BigDecimal preco){ 
-	return ResponseEntity.ok(produtoRepository.findAllByPrecoGreaterThanOrderByPreco(preco));
-	// Consulta pelo preço maior do que o preço digitado emm ordem crescente
+	@GetMapping("preco/min/{min}/max/{max}")
+	public ResponseEntity<List<Produto>> getPrecoEntre(@PathVariable BigDecimal min, BigDecimal max){ 
+	return ResponseEntity.ok(produtoRepository.findByPrecoBetween(min, max));//falta uma comparação de preço com os parametros
+	// Consulta pelo preço entre parametros
 	}
 		
 		
-	@GetMapping("/preco_menor/{preco}")
-	public ResponseEntity<List<Produto>> getPrecoMenorQue(@PathVariable BigDecimal preco){ 
-	return ResponseEntity.ok(produtoRepository.findAllByPrecoLessThanOrderByPrecoDesc(preco));
-	// Consulta pelo preço menor do que o preço digitado em ordem decrescente
+	@GetMapping("AND/nome/{nome}/marca/{marca}")
+	public ResponseEntity<List<Produto>> getProdutoAnd(@PathVariable String nome, String marca){ 
+	return ResponseEntity.ok(produtoRepository.findAllByNomeAndMarca(nome, marca));
+	// Consulta pelo produto com parametros AND
 		
-	}*/
+	}
+	
+	@GetMapping("OR/nome/{nome}/marca/{marca}")
+	public ResponseEntity<List<Produto>> getProdutoOr(@PathVariable String nome, String marca){ 
+	return ResponseEntity.ok(produtoRepository.findAllByNomeOrMarca(nome, marca));
+	// Consulta pelo produto com parametros OR
+		
+	}
 
 
 }

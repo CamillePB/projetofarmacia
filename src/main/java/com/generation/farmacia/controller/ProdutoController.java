@@ -102,7 +102,7 @@ public class ProdutoController {
 		
 	@GetMapping("AND/nome/{nome}/marca/{marca}")
 	public ResponseEntity<List<Produto>> getProdutoAnd(@PathVariable String nome, String marca){ 
-	return ResponseEntity.ok(produtoRepository.findAllByNomeAndMarca(nome, marca));
+	return ResponseEntity.ok(produtoRepository.findAllByNomeAndMarca(nome, marca));//não esta funcionando corretamente
 	// Consulta pelo produto com parametros AND
 		
 	}

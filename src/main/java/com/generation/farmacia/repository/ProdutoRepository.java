@@ -18,17 +18,15 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
    
 	 
 	public List<Produto>  findByPrecoBetween(BigDecimal min, BigDecimal max);
-	
-	
-	/*
-	 *  MySQL: *SELECT * FROM tb_produtos WHERE preco BETWEEN min AND max;
-	 */
-	
+
+	 // MySQL: *SELECT * FROM tb_produtos WHERE preco BETWEEN min AND max;
+	 	
 	public List<Produto> findAllByNomeAndMarca(String nome, String marca);
 	
-	/**
-	 	 *  MySQL: SELECT * FROM tb_produtos WHERE nome = nome AND preco = preco;
-		 */
+	
+	// MySQL: SELECT * FROM tb_produtos WHERE nome = nome AND preco = preco;
+		 
 	public List<Produto> findAllByNomeOrMarca(String nome, String marca);
 	
+	// MySQL: SELECT * FROM tb_produtos WHERE nome = nome OR preco = preco;
 }
